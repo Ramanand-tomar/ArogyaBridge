@@ -77,7 +77,6 @@ export const Web3Provider = ({ children }) => {
     PatientContractAddress,
     DoctorContractAddress,
     DiagnosisContractAddress,
-    Ganache_Address,
   ]);
 
   return (
