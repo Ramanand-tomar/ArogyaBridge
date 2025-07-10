@@ -11,7 +11,13 @@ import { FeedbackGet , createFeedback } from '../controllers/Feedback.js';
 
 const router = express.Router();
 
+router.get("/", (req, res) => {
+  return res.status(404).json({ message : "Welcome to ArogyaBridge API Backend" });
+});
+
+
 // API endpoint to store IPFS hash
+
 router.post('/api/records', AddingUserRecords);
 // API endpoint to get records for a patient
 router.get('/api/records/:patientNumber', GettingUserRecords);
