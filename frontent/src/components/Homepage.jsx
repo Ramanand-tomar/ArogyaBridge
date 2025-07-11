@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav_bar from "./Nav_bar";
-import Chatbot from "./ChatBot";
+import ChatBot from "./ChatBot";
 import SliderBar from "./Slider";
 
 
@@ -233,7 +233,7 @@ const Homepage = () => {
           </form>
         )}
       </section>
-      <Chatbot />
+      <ChatBot />
       <SliderBar/>
       {/* Impactful Info Section */}
       
