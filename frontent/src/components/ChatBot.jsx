@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
 
-const Chatbot = () => {
+export const Chatbot = () => {
   const backend_url = import.meta.env.VITE_BACKEND_URL
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -112,4 +112,4 @@ const Chatbot = () => {
   );
 };
 
-export default Chatbot;
+

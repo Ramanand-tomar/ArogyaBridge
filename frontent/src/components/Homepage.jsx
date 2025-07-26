@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav_bar from "./Nav_bar";
-import Chatbot from "./Chatbot.jsx"
+import {Chatbot} from './Chatbot'
 import SliderBar from "./Slider";
 
 
