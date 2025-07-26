@@ -5,19 +5,16 @@ import { AddingDiagnosisReport, GettingDiagnosisReport, AllDiagnosisReport } fro
 import { LoginHistoryStore, LoginHisoryGet } from '../controllers/LoginHistory.js';
 import { ChatBot } from '../controllers/ChatBot.js';
 import { FeedbackGet , createFeedback } from '../controllers/Feedback.js';
+import { ChatbotSummarizer } from '../controllers/ChatbotSummarizer.js';
+import { analyzeMedicalFileFromIPFS } from '../controllers/ReportAnalyzer.js';
+import { AnalyzeReportGetting, AnalyzeReportStoring } from '../controllers/ReportAnalyzerController.js';
 
 
 
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  return res.status(404).json({ message : "Welcome to ArogyaBridge API Backend" });
-});
-
-
 // API endpoint to store IPFS hash
-
 router.post('/api/records', AddingUserRecords);
 // API endpoint to get records for a patient
 router.get('/api/records/:patientNumber', GettingUserRecords);
@@ -50,4 +47,18 @@ router.get('/api/feedback', FeedbackGet);
 
 router.post('/api/feedback', createFeedback);
 
+router.get('/api/chatbotsummarize/:hhNumber', ChatbotSummarizer);
+
+router.post('/api/reportanalyzer' , analyzeMedicalFileFromIPFS );
+
+router.post('/api/analyzerreportsavetodb' , AnalyzeReportStoring);
+
+router.get('/api/analyzerreportsavetodb' , AnalyzeReportGetting);
+
 export default router;
+
+
+
+
+
+

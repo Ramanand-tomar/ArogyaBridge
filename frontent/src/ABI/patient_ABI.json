@@ -25,6 +25,44 @@
 		"type": "event"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "patientNumber",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "doctorNumber",
+				"type": "string"
+			}
+		],
+		"name": "PermissionGranted",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "patientNumber",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "doctorNumber",
+				"type": "string"
+			}
+		],
+		"name": "PermissionRevoked",
+		"type": "event"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -183,6 +221,32 @@
 					}
 				],
 				"internalType": "struct PatientRegistration.PatientList[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_patientNumber",
+				"type": "string"
+			}
+		],
+		"name": "getPermissionGrantedDoctors",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "doctor_number",
+						"type": "string"
+					}
+				],
+				"internalType": "struct PatientRegistration.DoctorList[]",
 				"name": "",
 				"type": "tuple[]"
 			}
@@ -383,6 +447,24 @@
 			}
 		],
 		"name": "registerPatient",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_patientNumber",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_doctorNumber",
+				"type": "string"
+			}
+		],
+		"name": "revokePermission",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"

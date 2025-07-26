@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
-const ChatBot = () => {
+
+const Chatbot = () => {
   const backend_url = import.meta.env.VITE_BACKEND_URL
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -59,7 +60,7 @@ const ChatBot = () => {
 
       {/* Chat Window */}
       {open && (
-        <div className="fixed bottom-24 right-8 z-50 w-80 max-w-xs bg-white rounded-2xl shadow-xl border border-teal-300 flex flex-col">
+        <div className="fixed bottom-24 right-8 z-50 w-120 max-w-xl bg-white rounded-2xl shadow-xl border border-teal-300 flex flex-col">
           {/* Chat Header */}
           <div className="bg-gradient-to-r from-teal-500 to-blue-600 text-white rounded-t-2xl px-4 py-3 flex justify-between items-center">
             <span className="font-bold">ArogyaBridge Chatbot</span>
@@ -69,12 +70,12 @@ const ChatBot = () => {
           {/* Chat Messages */}
           <div className="flex-1 overflow-y-auto px-3 py-2 space-y-2 bg-gray-50" style={{ maxHeight: 300 }}>
             {messages.map((msg, idx) => (
-              <div key={idx} className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}>
+              <div key={idx} className={`flex ${msg.from === "user" ? "justify-end mr-0" : "justify-start w-100"}`}>
                 <div
-                  className={`px-3 py-2 rounded-xl text-sm shadow ${
+                  className={`px-5  py-4  rounded-xl text-sm shadow ${
                     msg.from === "user"
                       ? "bg-teal-500 text-white"
-                      : "bg-gray-200 text-gray-800"
+                      : "bg-pink-300 text-gray-800"
                   }`}
                 >
                   {msg.text}
@@ -96,7 +97,7 @@ const ChatBot = () => {
               disabled={loading}
             />
             <button
-              className={`bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg font-bold ${
+              className={`bg-green-500 cursor-pointer hover:bg-green-600 text-white px-4 py-2 rounded-lg font-bold ${
                 loading ? "opacity-50 cursor-not-allowed" : ""
               }`}
               onClick={handleSend}
@@ -111,6 +112,4 @@ const ChatBot = () => {
   );
 };
 
-export default ChatBot;
-
-
+export default Chatbot;

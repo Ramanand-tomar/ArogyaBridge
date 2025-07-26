@@ -9,11 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^7.0.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "axios": "^1.10.0",
     "bcrypt": "^6.0.0",
     "dotenv": "^17.0.1",
     "env": "^0.0.2",
     "file-saver": "^2.0.5",
+    "framer-motion": "^12.23.9",
     "ipfs-http-client": "^60.0.1",
     "pdf-lib": "^1.17.1",
     "react": "^19.1.0",

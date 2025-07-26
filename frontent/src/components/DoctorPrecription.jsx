@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Web3Context } from "../context/Web3Context";
 import { useParams, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import { generatePrescriptionPdf } from "../assets/generatePrescriptionPdf";
+import { generateMedicalReportPdf } from "../assets/generatePrescriptionPdf";
 import { uploadFileToIPFS } from "../assets/uploadToPinata";
 
 const DoctorPrecription = () => {
@@ -57,36 +57,67 @@ const DoctorPrecription = () => {
     setSubmitting(true);
     setSuccess("");
     setError(null);
-    
+
     try {
       const date = new Date().toISOString().split("T")[0];
+      const diagnosticReport = {
+        report: {
+          summary:
+            "Patient presenting with acute viral upper respiratory infection (URI) symptoms, likely self-limiting.",
+          critical_findings: [
+            "No critical findings identified. Patient's vital signs and general condition appear stable for a viral illness.",
+          ],
+          recommended_tests: [
+            "Rapid antigen tests for Influenza A/B, RSV, and COVID-19 (if not already performed)",
+            "Complete Blood Count (CBC) with differential (to rule out secondary bacterial infection if symptoms persist or worsen)",
+            "C-reactive protein (CRP) if there is suspicion of significant inflammation",
+          ],
+          suggested_treatment: [
+            "Symptomatic relief: Antipyretics (e.g., acetaminophen or ibuprofen) for fever and body aches",
+            "Cough suppressants or expectorants as needed",
+            "Adequate hydration with clear fluids",
+            "Rest",
+            "Isolation precautions to prevent spread of infection",
+            "Follow-up if symptoms worsen, develop difficulty breathing, or persistent high fever",
+          ],
+          urgency: "Low",
+        },
+      };
+
+      // const data = await fetch(`${backend_url}/api/reportanalyzer`, {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ diagnosticReport }),
+      // });
+
+      // if (!data.ok) {
+      //   throw new Error(`HTTP error! status: ${data.status}`);
+      // }
+
+      // const report = await data.json();
+      // console.log(
+      //   "Report from report analyzer:",
+      //   report.report.summary,
+      //   report.report.critical_findings
+      // );
 
       // 1. First generate the PDF
-      const pdfBytes = await generatePrescriptionPdf({
+      const pdfFile = await generateMedicalReportPdf({
         doctorProfile: doctorDetails,
         patientNumber: patient_Number,
         title,
         description,
         date,
+        diagnosticReport,
       });
+      console.log("PDF File:", pdfFile);
 
-      // Create a Blob from the PDF bytes
-      const pdfBlob = new Blob([pdfBytes], { type: 'application/pdf' });
-      
-      // Create a File from the Blob
-      const pdfFile = new File([pdfBlob], `Prescription_${patient_Number}_${Date.now()}.pdf`, {
-        type: 'application/pdf'
-      });
-
-      // 2. Upload the PDF to IPFS using your Pinata function
-      const ipfsHash = await uploadFileToIPFS(pdfFile);
-      
-      if (!ipfsHash) {
+      if (!pdfFile.ipfsHash) {
         throw new Error("Failed to upload PDF to IPFS - no hash returned");
       }
 
       toast.success(`PDF uploaded to IPFS ✅`);
-      console.log("IPFS Hash:", ipfsHash);
+      console.log("IPFS Hash:", pdfFile.ipfsHash);
 
       // 3. Save prescription data to MongoDB with IPFS hash
       const prescriptionData = {
@@ -95,8 +126,8 @@ const DoctorPrecription = () => {
         title,
         description,
         date,
-        ipfsHash,
-        fileName: pdfFile.name
+        ipfsHash: pdfFile.ipfsHash,
+        fileName: pdfFile.filename,
       };
 
       const response = await fetch(`${backend_url}/api/prescriptions`, {
@@ -121,7 +152,6 @@ const DoctorPrecription = () => {
       setTimeout(() => {
         navigate(`/doctor/${hhNumber}/doctorviewpatient/${patient_Number}`);
       }, 1500);
-
     } catch (err) {
       console.error("Error submitting prescription:", err);
       setError(err.message || "Failed to submit prescription");

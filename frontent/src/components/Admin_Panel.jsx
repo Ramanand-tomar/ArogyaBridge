@@ -461,7 +461,7 @@ const Admin_Panel = () => {
                 <th className="py-2 px-4">Title</th>
 
                 <th className="py-2 px-4">Date</th>
-                <th className="py-2 px-4">Created At</th>
+                {/* <th className="py-2 px-4">Created At</th> */}
               </tr>
             </thead>
             <tbody>
@@ -475,9 +475,9 @@ const Admin_Panel = () => {
                   <td className="py-2 px-4">{pr.title}</td>
 
                   <td className="py-2 px-4">{pr.date}</td>
-                  <td className="py-2 px-4">
+                  {/* <td className="py-2 px-4">
                     {new Date(pr.createdAt).toLocaleString()}
-                  </td>
+                  </td> */}
                 </tr>
               ))}
             </tbody>

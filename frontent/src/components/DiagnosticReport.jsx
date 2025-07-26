@@ -32,7 +32,7 @@ const DiagnosticReport = () => {
   }, [hhNumber]);
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-100 via-teal-100 to-pink-100 relative overflow-hidden font-mono">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-900 via-teal-800 to-pink-900 relative overflow-hidden font-mono">
       
       <div className="w-full max-w-3xl bg-white/80 p-10 rounded-3xl shadow-2xl flex flex-col items-center animate-fade-in border border-teal-400/30 mt-20 mb-10">
         <h1 className="text-4xl font-extrabold mb-6 text-teal-700 drop-shadow text-center animate-bounce">Diagnostic Centre Report Details</h1>

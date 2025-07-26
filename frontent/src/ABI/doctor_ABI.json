@@ -27,6 +27,110 @@
 	{
 		"inputs": [
 			{
+				"internalType": "string",
+				"name": "_patientNumber",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_doctorNumber",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_patientName",
+				"type": "string"
+			}
+		],
+		"name": "grantPermission",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_doctorName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_hospitalName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_dateOfBirth",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_gender",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_hhNumber",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_specialization",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_department",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_designation",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_workExperience",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_password",
+				"type": "string"
+			}
+		],
+		"name": "registerDoctor",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_patientNumber",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_doctorNumber",
+				"type": "string"
+			}
+		],
+		"name": "revokePermission",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "uint256",
 				"name": "",
 				"type": "uint256"
@@ -231,29 +335,6 @@
 				"internalType": "string",
 				"name": "_doctorNumber",
 				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_patientName",
-				"type": "string"
-			}
-		],
-		"name": "grantPermission",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_patientNumber",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_doctorNumber",
-				"type": "string"
 			}
 		],
 		"name": "isPermissionGranted",
@@ -284,87 +365,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_doctorName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_hospitalName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_dateOfBirth",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_gender",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_email",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_hhNumber",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_specialization",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_department",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_designation",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_workExperience",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_password",
-				"type": "string"
-			}
-		],
-		"name": "registerDoctor",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_patientNumber",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_doctorNumber",
-				"type": "string"
-			}
-		],
-		"name": "revokePermission",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{

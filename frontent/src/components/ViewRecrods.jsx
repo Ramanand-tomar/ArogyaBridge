@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import toast , { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useParams, useNavigate } from "react-router-dom";
-
-
-
+import PatientSummary from "./PatientSummary";
 
 function ViewRecords() {
-  const Backend_URL = import.meta.env.VITE_BACKEND_URL ;
+  const Backend_URL = import.meta.env.VITE_BACKEND_URL;
 
   const navigate = useNavigate();
   const { hhNumber } = useParams();
   const [records, setRecords] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [analyzerOpen, setanalyzerOpen] = useState(false);
+  const [ipfsHash_to_analyze, setipfsHash_to_analyze] = useState(null);
 
   useEffect(() => {
     const fetchRecords = async () => {
@@ -36,6 +36,11 @@ function ViewRecords() {
     fetchRecords();
   }, [hhNumber]);
 
+  const handleAnalyzer = (ipfsHash) => {
+    setanalyzerOpen(true);
+    setipfsHash_to_analyze(ipfsHash);
+  };
+
   const cancelOperation = () => {
     navigate("/patient/" + hhNumber);
   };
@@ -46,18 +51,47 @@ function ViewRecords() {
       <div className="w-full max-w-3xl bg-gray-900 p-10 rounded-2xl shadow-2xl flex flex-col items-center animate-fade-in">
         <div className="flex flex-col items-center mb-8">
           <span className="bg-teal-600 rounded-full p-4 mb-2 shadow-lg">
-            <svg className="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-6a2 2 0 012-2h2a2 2 0 012 2v6m-6 0h6" />
+            <svg
+              className="h-10 w-10 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 17v-6a2 2 0 012-2h2a2 2 0 012 2v6m-6 0h6"
+              />
             </svg>
           </span>
-          <h1 className="text-3xl sm:text-4xl font-bold mb-2">Patient Records</h1>
-          <p className="text-teal-200 text-center text-sm">View and access your uploaded medical documents securely.</p>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-2">
+            Patient Records
+          </h1>
+          <p className="text-teal-200 text-center text-sm">
+            View and access your uploaded medical documents securely.
+          </p>
         </div>
         {loading ? (
           <div className="text-teal-300 text-lg font-semibold flex items-center gap-2 mb-6">
-            <svg className="animate-spin h-6 w-6" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+            <svg
+              className="animate-spin h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v8z"
+              ></path>
             </svg>
             Loading records...
           </div>
@@ -75,28 +109,62 @@ function ViewRecords() {
               >
                 <div className="flex items-center gap-3">
                   <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-teal-600 text-white text-xl shadow-md">
-                    <svg xmlns='http://www.w3.org/2000/svg' className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                      <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 17v-6a2 2 0 012-2h2a2 2 0 012 2v6m-6 0h6' />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 17v-6a2 2 0 012-2h2a2 2 0 012 2v6m-6 0h6"
+                      />
                     </svg>
                   </span>
                   <div>
-                    <span className="bg-teal-500 text-white text-xs font-bold px-2 py-1 rounded mr-2">#{index + 1}</span>
-                    <span className="font-semibold text-lg text-teal-200">{record.fileName || 'Document'}</span>
+                    <span className="bg-teal-500 text-white text-xs font-bold px-2 py-1 rounded mr-2">
+                      #{index + 1}
+                    </span>
+                    <span className="font-semibold text-lg text-teal-200">
+                      {record.fileName || "Document"}
+                    </span>
                   </div>
                 </div>
                 <div className="flex-1 flex flex-col sm:flex-row sm:items-center gap-2 mt-2 sm:mt-0">
                   <span className="bg-gray-600 text-gray-100 text-xs px-2 py-1 rounded-full mr-2">
-                    {record.uploadedAt ? new Date(record.uploadedAt).toLocaleDateString() : 'Unknown Date'}
+                    {record.uploadedAt
+                      ? new Date(record.uploadedAt).toLocaleDateString()
+                      : "Unknown Date"}
                   </span>
+                  <button
+                    onClick={() => handleAnalyzer(record.ipfsHash)}
+                    className="ml-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded font-bold text-white transition-all duration-150"
+                  >
+                    Summary
+                  </button>
                   {record.ipfsHash && (
                     <a
-                      href={`https://ipfs.io/ipfs/${record.ipfsHash}`}
+                      href={`https://ipfs.io/ipfs/${record.ipfsHash}`} //QmQW98nR7qG3uVQVBxctC3hhFKWmcu3xwjCuwhCo5AqPjN//
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-1 text-blue-400 underline hover:text-blue-300 transition-colors duration-150 font-medium"
                     >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 002.828 2.828l6.586-6.586a2 2 0 00-2.828-2.828z" />
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15.172 7l-6.586 6.586a2 2 0 002.828 2.828l6.586-6.586a2 2 0 00-2.828-2.828z"
+                        />
                       </svg>
                       View Uploaded File
                     </a>
@@ -117,7 +185,7 @@ function ViewRecords() {
       </div>
       <div className="mt-6 text-center">
         <p className="text-lg">
-          If you want to upload your past records, please click{' '}
+          If you want to upload your past records, please click{" "}
           <span
             className="text-blue-500 cursor-pointer hover:underline"
             onClick={() => navigate(`/patient/${hhNumber}/uploadrecords`)}
@@ -126,6 +194,8 @@ function ViewRecords() {
           </span>
         </p>
       </div>
+            {analyzerOpen?<PatientSummary ipfsHash={ipfsHash_to_analyze} setAnalyzerOpen={setanalyzerOpen}  />:null}
+      
     </div>
   );
 }

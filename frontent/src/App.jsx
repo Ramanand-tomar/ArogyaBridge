@@ -23,6 +23,9 @@ import DoctorViewPatient from './components/DoctorViewPatient.jsx';
 import DiagnosisForm from './components/DiagnosisForm.jsx';
 import DiagnosticReport from './components/DiagnosticReport.jsx';
 import Admin_Panel from './components/Admin_Panel.jsx';
+import SummarizeYourHealth from './components/SummarizeYourHealth.jsx';
+import PermissionGrantedDoctors from './components/PermissionGrantedDoctors.jsx';
+import Medicines from "./components/Medicines.jsx"
 
 
 
@@ -124,6 +127,14 @@ function App() {
       element: <GrantPermission />,
     },
     {
+      path: "/patient/:hhNumber/permissiongrateddoctors",
+      element: <PermissionGrantedDoctors />,
+    },
+    {
+      path: "/patient/:hhNumber/summarizeyourself",
+      element: <SummarizeYourHealth />,
+    },
+    {
       path: "/doctor/:hhNumber/doctorviewpatient/:patient_Number/doctor-Prescription",
       element: <DoctorPrescription />,
     },
@@ -150,6 +161,10 @@ function App() {
     {
       path: "/admin-panel",
       element: <Admin_Panel />,
+    },
+    {
+      path: "/medicines",
+      element: <Medicines/>,
     }
   ]);
 

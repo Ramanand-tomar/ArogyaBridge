@@ -22,6 +22,11 @@ const Nav_bar = () => {
             About
             <span className="block h-0.5 bg-teal-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
           </a>
+
+          <a href="/medicines" className="text-white font-semibold hover:text-teal-300 transition-colors duration-200 text-lg relative group">
+            Medicines
+            <span className="block h-0.5 bg-teal-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+          </a>
           
         </div>
         <div className="hidden md:flex items-center gap-2 animate-fade-in">

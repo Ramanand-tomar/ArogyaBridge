@@ -1,0 +1,144 @@
+{
+  "medicines": [
+    {
+      "name": "Paracetamol",
+      "image": "Paracetamol.jpeg", 
+      "use_case": "Pain relief and fever reduction",
+      "price": 5.99,
+      "expiry_date": "2025-12-31"
+    },
+    {
+      "name": "Ibuprofen",
+      "image": "Ibuprofen.jpeg",
+      "use_case": "Anti-inflammatory pain relief",
+      "price": 8.49,
+      "expiry_date": "2024-11-30"
+    },
+    {
+      "name": "Amoxicillin",
+      "image": "Amoxicillin.jpeg",
+      "use_case": "Antibiotic for bacterial infections",
+      "price": 12.99,
+      "expiry_date": "2024-09-15"
+    },
+    {
+      "name": "Loratadine",
+      "image": "Loratadine.jpeg",
+      "use_case": "Antihistamine for allergies",
+      "price": 7.25,
+      "expiry_date": "2025-06-30"
+    },
+    {
+      "name": "Omeprazole",
+      "image": "Omeprazole.jpeg",
+      "use_case": "Acid reflux treatment",
+      "price": 9.75,
+      "expiry_date": "2025-03-15"
+    },
+    {
+      "name": "Atorvastatin",
+      "image": "Atorvastatin.jpeg",
+      "use_case": "Cholesterol management",
+      "price": 15.50,
+      "expiry_date": "2026-01-31"
+    },
+    {
+      "name": "Metformin",
+      "image": "Metformin.jpeg",
+      "use_case": "Type 2 diabetes treatment",
+      "price": 6.99,
+      "expiry_date": "2024-12-31"
+    },
+    {
+      "name": "Cetirizine",
+      "image": "Cetirizine.jpeg",
+      "use_case": "Allergy relief",
+      "price": 5.25,
+      "expiry_date": "2025-08-15"
+    },
+    {
+      "name": "Aspirin",
+      "image": "Aspirin.jpeg",
+      "use_case": "Pain relief and blood thinner",
+      "price": 4.99,
+      "expiry_date": "2025-05-30"
+    },
+    {
+      "name": "Lisinopril",
+      "image": "Lisinopril.jpeg",
+      "use_case": "High blood pressure treatment",
+      "price": 10.25,
+      "expiry_date": "2026-02-28"
+    },
+    {
+      "name": "Simvastatin",
+      "image": "Simvastatin.jpeg",
+      "use_case": "Cholesterol lowering medication",
+      "price": 14.99,
+      "expiry_date": "2025-10-31"
+    },
+    {
+      "name": "Diazepam",
+      "image": "Diazepam.jpeg",
+      "use_case": "Anxiety and muscle relaxant",
+      "price": 18.75,
+      "expiry_date": "2024-07-31"
+    },
+    {
+      "name": "Ciprofloxacin",
+      "image": "Ciprofloxacin.jpeg",
+      "use_case": "Antibiotic for infections",
+      "price": 11.50,
+      "expiry_date": "2025-04-30"
+    },
+    {
+      "name": "Levothyroxine",
+      "image": "Levothyroxine.jpeg",
+      "use_case": "Thyroid hormone replacement",
+      "price": 7.99,
+      "expiry_date": "2026-03-15"
+    },
+    {
+      "name": "Albuterol",
+      "image": "Albuterol.jpeg",
+      "use_case": "Asthma inhaler",
+      "price": 22.99,
+      "expiry_date": "2024-10-31"
+    },
+    {
+      "name": "Hydrochlorothiazide",
+      "image": "Hydrochlorothiazide.jpeg",
+      "use_case": "Diuretic for high blood pressure",
+      "price": 6.50,
+      "expiry_date": "2025-07-31"
+    },
+    {
+      "name": "Sertraline",
+      "image": "Sertraline.jpeg",
+      "use_case": "Antidepressant",
+      "price": 16.25,
+      "expiry_date": "2025-09-30"
+    },
+    {
+      "name": "Metoprolol",
+      "image": "Metoprolol.jpeg",
+      "use_case": "Beta blocker for heart conditions",
+      "price": 9.99,
+      "expiry_date": "2026-04-30"
+    },
+    {
+      "name": "Pantoprazole",
+      "image": "Pantoprazole.jpeg",
+      "use_case": "Acid reducer for GERD",
+      "price": 12.75,
+      "expiry_date": "2025-11-30"
+    },
+    {
+      "name": "Tramadol",
+      "image": "Tramadol.jpeg",
+      "use_case": "Pain relief for moderate to severe pain",
+      "price": 24.50,
+      "expiry_date": "2024-08-15"
+    }
+  ]
+}

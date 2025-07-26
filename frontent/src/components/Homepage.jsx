@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav_bar from "./Nav_bar";
-import ChatBot from "./ChatBot";
+import Chatbot from "./Chatbot";
 import SliderBar from "./Slider";
 
 
@@ -233,7 +233,7 @@ const Homepage = () => {
           </form>
         )}
       </section>
-      <ChatBot />
+      <Chatbot />
       <SliderBar/>
       {/* Impactful Info Section */}
       
@@ -254,7 +254,7 @@ const Homepage = () => {
           <li className="bg-pink-300 m-4 p-4 rounded-xl shadow-2xl border border-red-600  hover:bg-purple-400 transform hover:scale-120 transition-all duration-400">Enable real-time collaboration between healthcare providers</li>
           <li className="bg-purple-300 m-4 p-4 rounded-xl shadow-2xl border border-red-600  hover:bg-teal-400 transform hover:scale-120 transition-all duration-400">Ensure data privacy, security, and transparency</li>
         </ul>
-        <p className="text-gray-700 text-lg">
+        <p className="text-gray-700 text-lg text-center">
           Join us in transforming healthcare for everyone, everywhere.
         </p>
        

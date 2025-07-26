@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Web3Context } from "../context/Web3Context";
+import PatientSummary from "./PatientSummary";
+
 
 
 const DoctorViewPatient = () => {
@@ -25,6 +27,8 @@ const DoctorViewPatient = () => {
   const [prescriptions, setPrescriptions] = useState([]);
   const [prescriptionLoading, setPrescriptionLoading] = useState(false);
   const [prescriptionError, setPrescriptionError] = useState(null);
+  const [analyzerOpen , setanalyzerOpen ] = useState(false);
+  const [ipfsHash_to_analyze, setipfsHash_to_analyze] = useState(null);
 
   useEffect(() => {
     const init = async () => {
@@ -61,6 +65,7 @@ const DoctorViewPatient = () => {
       setRecords(data || []);
       setError(null);
       setShowModal(true);
+
     } catch (err) {
       setError("Error retrieving patient records");
       setRecords([]);
@@ -68,6 +73,10 @@ const DoctorViewPatient = () => {
       setLoading(false);
     }
   };
+  const handleAnalyzer = (ipfsHash)=>{
+    setanalyzerOpen(true);
+    setipfsHash_to_analyze(ipfsHash);
+  }
 
   const handleViewPrescriptions = async () => {
     setPrescriptionLoading(true);
@@ -118,7 +127,7 @@ const DoctorViewPatient = () => {
           className="absolute inset-0 w-full h-full object-cover object-center opacity-90 z-0"
           style={{ filter: 'blur(0.5px) brightness(0.95)' }}
         />
-      <div className="w-full max-w-2xl bg-gray-900 bg-opacity-90 backdrop-blur-lg p-10 rounded-3xl shadow-2xl flex flex-col items-center animate-fade-in">
+      <div className="w-full max-w-3xl bg-gray-900 bg-opacity-90 backdrop-blur-lg p-10 rounded-3xl shadow-2xl flex flex-col items-center animate-fade-in">
 
         <h1 className="text-3xl sm:text-4xl font-bold mb-6 text-teal-300 drop-shadow">
           Patient Details
@@ -214,18 +223,20 @@ const DoctorViewPatient = () => {
           >
             Prescription Consultancy
           </button>
+          
           <button
             onClick={handleClose}
             className="flex-1 px-6 py-3 bg-red-500 hover:bg-red-600 rounded-lg font-bold text-white transition-all duration-150 shadow"
           >
             Close
           </button>
+          
         </div>
       </div>
       {/* Modal for document list */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
-          <div className="bg-gray-900 rounded-2xl shadow-2xl p-8 max-w-lg w-full animate-fade-in flex flex-col items-center">
+        <div className="fixed inset-0 z-50 flex items-center justify-center w-auto bg-black bg-opacity-60">
+          <div className="bg-gray-900 rounded-2xl shadow-2xl p-8 max-w-2xl w-full animate-fade-in flex flex-col items-center">
             <h2 className="text-2xl font-bold text-teal-300 mb-4">
               Patient Past Medical Records
             </h2>
@@ -239,12 +250,20 @@ const DoctorViewPatient = () => {
                     <span className="text-teal-200 font-semibold truncate max-w-xs">
                       {rec.fileName || rec.ipfsHash}
                     </span>
-                    <button
+                    <div className="flex items-center gap-2">
+                      <button
                       onClick={() => handleOpenDocument(rec.ipfsHash)}
                       className="ml-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded font-bold text-white transition-all duration-150"
                     >
                       Open
                     </button>
+                    <button
+                      onClick={() => handleAnalyzer(rec.ipfsHash)}
+                      className="ml-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded font-bold text-white transition-all duration-150"
+                    >
+                      Analyze
+                    </button>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -260,9 +279,12 @@ const DoctorViewPatient = () => {
           </div>
         </div>
       )}
+
+      {analyzerOpen?<PatientSummary ipfsHash={ipfsHash_to_analyze} setAnalyzerOpen={setanalyzerOpen}  />:null}
       {/* Modal for prescription list */}
+      
       {showPrescriptionModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
+        <div className="fixed scroll-auto inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
           <div className="bg-gray-900 rounded-2xl shadow-2xl p-8 max-w-lg w-full animate-fade-in flex flex-col items-center">
             <h2 className="text-2xl font-bold text-purple-300 mb-4">Patient Prescriptions</h2>
             {prescriptionLoading ? (
@@ -279,7 +301,7 @@ const DoctorViewPatient = () => {
                 {prescriptionError}
               </p>
             ) : prescriptions.length > 0 ? (
-              <ul className="w-full space-y-4 mb-4">
+              <ul className="w-full space-y-4 mb-4 scroll-auto">
                 {prescriptions.map((pres, idx) => (
                   <li key={idx} className="bg-gray-800 rounded-lg px-4 py-3 shadow flex flex-col gap-1">
                     <span className="text-teal-200 font-bold text-lg">{pres.title}</span>
