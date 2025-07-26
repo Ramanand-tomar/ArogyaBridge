@@ -233,7 +233,7 @@ const Homepage = () => {
           </form>
         )}
       </section>
-      
+
       <Chatbot />
       <SliderBar/>
       {/* Impactful Info Section */}
